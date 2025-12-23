@@ -9,7 +9,6 @@
     --font-main: 'Inter', sans-serif;
 }
 
-
 * {
     margin: 0;
     padding: 0;
@@ -418,42 +417,75 @@ body {
     font-style: italic;
 }
 
-/* --- СВІТЛА ТЕМА (Активується класом .light-theme на body) --- */
 body.light-theme {
-    /* Фон: світло-сірий, приємний для очей */
-    --bg-body: #F3F4F6;
-    
-    /* Картки: ідеально білі */
+    --bg-body: #F0F2F5;
     --bg-card: #FFFFFF;
-    
-    /* Текст: майже чорний (не #000, щоб було м'якше) */
     --text-primary: #111111;
-    --text-secondary: #6B7280; /* Сірий текст */
-    
-    /* Акценти та рамки */
-    --accent-glow: rgba(0, 0, 0, 0.05); /* Тінь замість світіння */
-    --border-color: #E5E7EB; /* Світло-сіра рамка */
+    --text-secondary: #6B7280;
+    --border-color: rgba(0, 0, 0, 0.12);
 }
 
-/* Додаткові покращення для світлої теми */
 body.light-theme .header {
-    /* Змінюємо темний градієнт хедера на світлий або білий */
-    background: radial-gradient(circle at 50% 50%, #ffffff 0%, #F3F4F6 100%);
+    background: radial-gradient(circle at 50% 50%, #ffffff 0%, #F0F2F5 100%);
 }
 
 body.light-theme .card {
-    /* У світлій темі тіні важливіші за рамки */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    border: 1px solid transparent; /* Прибираємо жорстку рамку */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-color);
 }
 
-/* Інпути у світлій темі */
+body.light-theme .card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
 body.light-theme .converter__group {
-    background-color: #F9FAFB; /* Трохи темніший за білу картку */
+    background-color: #F9FAFB;
     border: 1px solid #E5E7EB;
 }
 
+body.light-theme .converter__input {
+    color: var(--text-primary);
+}
+
+body.light-theme .converter__swap-btn {
+    background-color: #ffffff;
+    border-color: #E5E7EB;
+    color: #111111;
+}
+
 body.light-theme .converter__swap-btn:hover {
-    background-color: #111;
-    color: #fff;
+    background-color: #111111;
+    color: #ffffff;
+    border-color: #111111;
+}
+
+body.light-theme .currency-table__td {
+    border-bottom: 1px solid #E5E7EB;
+}
+
+body.light-theme .badge {
+    background-color: #E5E7EB;
+    color: #111111;
+}
+
+body.light-theme .history-item,
+body.light-theme .bank-list__item {
+    background-color: #F3F4F6;
+    border: 1px solid #E5E7EB;
+}
+
+body.light-theme .history-item:hover {
+    background-color: #E5E7EB;
+    border-color: #d1d5db;
+}
+
+body.light-theme .history-item__icon-wrapper {
+    background-color: #E5E7EB;
+    color: #111111;
+}
+
+body.light-theme .history-clear-btn:hover {
+    background-color: #E5E7EB;
+    color: #EB5757;
 }
