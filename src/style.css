@@ -417,3 +417,43 @@ body {
     color: var(--text-secondary);
     font-style: italic;
 }
+
+/* --- СВІТЛА ТЕМА (Активується класом .light-theme на body) --- */
+body.light-theme {
+    /* Фон: світло-сірий, приємний для очей */
+    --bg-body: #F3F4F6;
+    
+    /* Картки: ідеально білі */
+    --bg-card: #FFFFFF;
+    
+    /* Текст: майже чорний (не #000, щоб було м'якше) */
+    --text-primary: #111111;
+    --text-secondary: #6B7280; /* Сірий текст */
+    
+    /* Акценти та рамки */
+    --accent-glow: rgba(0, 0, 0, 0.05); /* Тінь замість світіння */
+    --border-color: #E5E7EB; /* Світло-сіра рамка */
+}
+
+/* Додаткові покращення для світлої теми */
+body.light-theme .header {
+    /* Змінюємо темний градієнт хедера на світлий або білий */
+    background: radial-gradient(circle at 50% 50%, #ffffff 0%, #F3F4F6 100%);
+}
+
+body.light-theme .card {
+    /* У світлій темі тіні важливіші за рамки */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid transparent; /* Прибираємо жорстку рамку */
+}
+
+/* Інпути у світлій темі */
+body.light-theme .converter__group {
+    background-color: #F9FAFB; /* Трохи темніший за білу картку */
+    border: 1px solid #E5E7EB;
+}
+
+body.light-theme .converter__swap-btn:hover {
+    background-color: #111;
+    color: #fff;
+}
