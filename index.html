@@ -17,6 +17,7 @@
                 <a href="#banks" class="nav__link">Банки</a>
                 <a href="#table" class="nav__link">Валюти</a>
                 <a href="#history" class="nav__link">Історія</a>
+                <button id="open-modal-btn" class="nav__link nav__btn">Реєстрація</button>
             </nav>
             <button class="theme-toggle" id="theme-toggle">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -45,16 +46,12 @@
         <div class="forms-wrapper">
             
             <section id="converter" class="card card--converter">
-                <div class="card__header">
-                    <h2 class="card__title">Швидкий обмін</h2>
-                    <span class="card__date">Актуально на сьогодні</span>
-                </div>
                 <div class="converter">
                     <div class="converter__group">
                         <label class="converter__label">Віддаю</label>
                         <div class="converter__input-wrapper">
-                            <input type="number" class="converter__input" value="100" placeholder="0">
-                            <select class="converter__select">
+                            <input type="number" id="input-from" class="converter__input" value="100" placeholder="0">
+                            <select id="select-from" class="converter__select">
                                 <option value="USD">USD</option>
                                 <option value="EUR">EUR</option>
                                 <option value="UAH">UAH</option>
@@ -63,7 +60,7 @@
                     </div>
                     
                     <div class="converter__divider">
-                        <button class="converter__swap-btn">
+                        <button class="converter__swap-btn" id="swap-btn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M7 10l5 5 5-5"/>
                                 <path d="M7 14l5-5 5 5"/>
@@ -74,13 +71,16 @@
                     <div class="converter__group">
                         <label class="converter__label">Отримую</label>
                         <div class="converter__input-wrapper">
-                            <input type="number" class="converter__input" value="4150" readonly>
-                            <span class="converter__currency">UAH</span>
+                            <input type="number" id="input-to" class="converter__input" readonly>
+                            <select id="select-to" class="converter__select">
+                                <option value="UAH">UAH</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
                         </div>
                     </div>
-                </div>
-                <div class="card__footer">
-                    1 USD ≈ 41.50 UAH
+
+                    <button id="convert-btn" class="converter__action-btn">Конвертувати</button>
                 </div>
             </section>
 
@@ -200,6 +200,35 @@
                 </section>
         </div>
     </main>
+    <div id="auth-modal" class="modal">
+        <div class="modal__content">
+            <span class="modal__close">&times;</span>
+            <h2 class="modal__title">Створити акаунт</h2>
+            <p class="modal__subtitle">Зберігайте історію обмінів та налаштування</p>
+            
+            <form id="register-form" class="auth-form" novalidate>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-input" placeholder="name@example.com" required>
+                    <span class="error-message" id="email-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" id="password" class="form-input" placeholder="Мінімум 6 символів" minlength="6" required>
+                    <span class="error-message" id="password-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password" class="form-label">Підтвердження пароля</label>
+                    <input type="password" id="confirm-password" class="form-input" placeholder="Повторіть пароль" required>
+                    <span class="error-message" id="confirm-error"></span>
+                </div>
+
+                <button type="submit" class="auth-btn">Зареєструватися</button>
+            </form>
+        </div>
+    </div>
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>

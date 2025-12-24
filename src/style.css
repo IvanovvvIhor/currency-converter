@@ -50,6 +50,7 @@ body {
 .nav {
     display: flex;
     gap: 30px;
+    align-items: center;
 }
 
 .nav__link {
@@ -489,3 +490,190 @@ body.light-theme .history-clear-btn:hover {
     background-color: #E5E7EB;
     color: #EB5757;
 }
+
+
+.converter__action-btn {
+    width: 100%;
+    margin-top: 24px;
+    padding: 16px;
+    background-color: var(--text-primary); /* Чорна в світлій, біла в темній */
+    color: var(--bg-card); /* Текст кольору картки */
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+    font-family: var(--font-main);
+}
+
+.converter__action-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.converter__action-btn:active {
+    transform: scale(0.98);
+}
+
+/* Адаптація під світлу тему (щоб кнопка була контрастною) */
+body.light-theme .converter__action-btn {
+    background-color: #111111;
+    color: #FFFFFF;
+}
+
+/* --- СТИЛІ ДЛЯ КНОПКИ В ХЕДЕРІ --- */
+.nav__btn {
+    background: transparent;
+    border: 1px solid var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+}
+
+.nav__btn:hover {
+    background: var(--text-primary);
+    color: var(--bg-body);
+}
+
+/* --- МОДАЛЬНЕ ВІКНО --- */
+.modal {
+    display: none; /* Приховано за замовчуванням */
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Потімнення фону */
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal__content {
+    background-color: var(--bg-card);
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    position: relative;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal__close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal__close:hover {
+    color: var(--text-primary);
+}
+
+.modal__title {
+    text-align: center;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.modal__subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+/* --- ФОРМА ТА ВАЛІДАЦІЯ --- */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s;
+}
+
+/* Стилі для світлої теми */
+body.light-theme .form-input {
+    background-color: #F9FAFB;
+}
+
+.form-input:focus {
+    border-color: var(--text-primary);
+}
+
+/* ВАЛІДАЦІЯ: Клас error додається через JS */
+.form-input.error {
+    border-color: #EB5757;
+    background-color: rgba(235, 87, 87, 0.05);
+}
+
+/* ВАЛІДАЦІЯ: Клас success додається через JS */
+.form-input.success {
+    border-color: #27AE60;
+}
+
+.error-message {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: #EB5757;
+    height: 14px; /* Фіксована висота, щоб форма не стрибала */
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--text-primary);
+    color: var(--bg-card);
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: opacity 0.2s;
+}
+
+.auth-btn:hover {
+    opacity: 0.9;
+}
+
+body.light-theme .auth-btn {
+    background-color: #111;
+    color: #fff;
+}
+
