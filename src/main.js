@@ -1,15 +1,17 @@
-// 1. Імпорти
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import '/src/variables.css'; // Переконайся, що імпортуєш свої CSS файли
-import '/src/base.css';
-import '/src/layout.css';
-import '/src/components.css';
-import '/src/themes.css';
-import '/src/responsive.css';
+
+// 👇 ТУТ БУЛА ПОМИЛКА. Тепер шляхи правильні для твоєї структури:
+import './variables.css';
+import './base.css';
+import './layout.css';
+import './components.css';
+import './themes.css';
+import './responsive.css';
+
 import axios from 'axios';
 
-// --- ЕЛЕМЕНТИ DOM ---
+
 const themeBtn = document.getElementById('theme-toggle');
 const body = document.body;
 const inputFrom = document.getElementById('input-from');

@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: './', // ВАЖЛИВО: Робить шляхи відносними, щоб сайт працював на GitHub Pages
+  // 👇 ЗАМІНИ 'currency-converter' НА НАЗВУ ТВОГО РЕПОЗИТОРІЮ З URL
+  base: '/currency-converter/', 
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: false, // Прибирає карти коду для зменшення розміру
+    sourcemap: false,
   }
 });
