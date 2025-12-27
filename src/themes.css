@@ -1,0 +1,26 @@
+body.light-theme {
+    --bg-body: #F0F2F5;
+    --bg-card: #FFFFFF;
+    --text-primary: #111111;
+    --text-secondary: #6B7280;
+    --border-color: rgba(0, 0, 0, 0.12);
+}
+
+body.light-theme .header { background: radial-gradient(circle at 50% 50%, #ffffff 0%, #F0F2F5 100%); }
+body.light-theme .card { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border: 1px solid var(--border-color); }
+body.light-theme .card:hover { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); border-color: rgba(0, 0, 0, 0.2); }
+body.light-theme .converter__group { background-color: #F9FAFB; border: 1px solid #E5E7EB; }
+body.light-theme .converter__swap-btn { background-color: #ffffff; border-color: #E5E7EB; color: #111111; }
+body.light-theme .converter__swap-btn:hover { background-color: #111111; color: #ffffff; border-color: #111111; }
+body.light-theme .currency-table__td { border-bottom: 1px solid #E5E7EB; }
+body.light-theme .badge { background-color: #E5E7EB; color: #111111; }
+body.light-theme .history-item,
+body.light-theme .bank-list__item { background-color: #F3F4F6; border: 1px solid #E5E7EB; }
+body.light-theme .history-item:hover { background-color: #E5E7EB; border-color: #d1d5db; }
+body.light-theme .history-item__icon-wrapper { background-color: #E5E7EB; color: #111111; }
+body.light-theme .history-clear-btn:hover { background-color: #E5E7EB; color: #EB5757; }
+body.light-theme .converter__action-btn { background-color: #111111; color: #FFFFFF; }
+body.light-theme .form-input { background-color: #F9FAFB; }
+body.light-theme .auth-btn { background-color: #111; color: #fff; }
+body.light-theme .scroll-top-btn { background-color: #FFFFFF; color: #111111; border: 1px solid #E5E7EB; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+body.light-theme .scroll-top-btn:hover { background-color: #F9FAFB; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); border-color: #d1d5db; }

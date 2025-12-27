@@ -1,0 +1,47 @@
+/* --- СКИДАННЯ --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+}
+
+/* --- ВИПРАВЛЕННЯ КОНФЛІКТІВ З BOOTSTRAP --- */
+body {
+    background-color: var(--bg-body) !important;
+    color: var(--text-primary) !important;
+}
+
+.btn:focus, .form-control:focus, .form-input:focus, button:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+ul {
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Глобальні фікси кольорів */
+h1, h2, h3, h4, h5, h6, .card__title {
+    color: var(--text-primary) !important;
+}
+
+body, .card, .modal__content {
+    color: var(--text-primary) !important;
+}

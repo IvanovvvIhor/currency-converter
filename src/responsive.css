@@ -1,0 +1,13 @@
+@media (max-width: 992px) {
+    .header__hero { padding-top: 100px; padding-bottom: 40px; }
+    .logo__text { font-size: 2.5rem; }
+    .nav { gap: 15px; }
+    .nav__link { font-size: 0.9rem; }
+}
+
+@media (max-width: 576px) {
+    .header__top { flex-direction: column; gap: 20px; padding: 20px 20px; width: 100%; }
+    .nav { flex-wrap: wrap; justify-content: center; }
+    .card { padding: 20px; }
+    .converter__input { font-size: 1.5rem; }
+}
