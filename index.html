@@ -11,7 +11,7 @@
   </head>
   <body>
     <header class="header">
-        <div class="header__top">
+        <div class="header__top d-flex justify-content-between align-items-center">
             <nav class="nav">
                 <a href="#converter" class="nav__link">Курс</a>
                 <a href="#banks" class="nav__link">Банки</a>
@@ -20,215 +20,172 @@
                 <button id="open-modal-btn" class="nav__link nav__btn">Реєстрація</button>
             </nav>
             <button class="theme-toggle" id="theme-toggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
-                </svg>
-            </button>
+                </button>
         </div>
         
-        <div class="header__hero">
-            <div class="logo">
-                <svg class="logo__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="header__hero text-center d-flex flex-column align-items-center justify-content-center h-100">
+            <div class="logo d-flex align-items-center mb-3">
+                <svg class="logo__icon" viewBox="0 0 24 24" fill="none" style="width: 64px; height: 64px;">
                     <path d="M12 4V2C6.48 2 2 6.48 2 12H4C4 7.58 7.58 4 12 4Z" fill="currentColor"/>
                     <path d="M12 20V22C17.52 22 22 17.52 22 12H20C20 16.42 16.42 20 12 20Z" fill="currentColor"/>
                     <path d="M16.5 5.5L18.43 3.57C19.38 2.62 20.64 2 22 2V4C21.2 4 20.45 4.31 19.86 4.9L16.5 8.25V5.5Z" fill="currentColor"/>
                     <path d="M7.5 18.5L5.57 20.43C4.62 21.38 3.36 22 2 22V20C2.8 20 3.55 19.69 4.14 19.1L7.5 15.75V18.5Z" fill="currentColor"/>
                 </svg>
-                <h1 class="logo__text">Converter</h1>
+                <h1 class="logo__text ms-3">Converter</h1>
             </div>
-            <p class="header__subtitle">Ваш надійний провідник у світі валют</p>
+            <p class="header__subtitle mb-4">Ваш надійний провідник у світі валют</p>
             <a href="#converter" class="header__cta">Почати обмін</a>
         </div>
     </header>
 
     <main class="main-content">
-        <div class="forms-wrapper">
+        <div class="container">
             
-            <section id="converter" class="card card--converter">
-                <div class="converter">
-                    <div class="converter__group">
-                        <label class="converter__label">Віддаю</label>
-                        <div class="converter__input-wrapper">
-                            <input type="number" id="input-from" class="converter__input" value="100" placeholder="0">
-                            <select id="select-from" class="converter__select">
-                                <option value="USD">USD</option>
-                                <option value="EUR">EUR</option>
-                                <option value="UAH">UAH</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="converter__divider">
-                        <button class="converter__swap-btn" id="swap-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 10l5 5 5-5"/>
-                                <path d="M7 14l5-5 5 5"/>
-                            </svg>
-                        </button>
-                    </div>
+            <div id="api-alert" class="alert alert-danger mb-4" role="alert" style="display: none;">
+                Не вдалося завантажити курси валют. Перевірте підключення до інтернету.
+            </div>
 
-                    <div class="converter__group">
-                        <label class="converter__label">Отримую</label>
-                        <div class="converter__input-wrapper">
-                            <input type="number" id="input-to" class="converter__input" readonly>
-                            <select id="select-to" class="converter__select">
-                                <option value="UAH">UAH</option>
-                                <option value="USD">USD</option>
-                                <option value="EUR">EUR</option>
-                            </select>
+            <div class="row g-4">
+                
+                <div class="col-12">
+                    <section id="converter" class="card card--converter h-100">
+                        <div class="card__header">
+                            <h2 class="card__title">Швидкий обмін</h2>
+                            <span class="card__date">Завантаження...</span>
                         </div>
-                    </div>
-
-                    <button id="convert-btn" class="converter__action-btn">Конвертувати</button>
-                </div>
-            </section>
-
-            <section id="banks" class="card card--banks">
-                <div class="card__header">
-                    <h2 class="card__title">Курс у банках</h2>
-                </div>
-                <ul class="bank-list">
-                    <li class="bank-list__item">
-                        <div class="bank-list__info">
-                            <span class="bank-list__name">PrivatBank</span>
-                        </div>
-                        <div class="bank-list__rates">
-                            <span class="bank-list__rate bank-list__rate--buy">41.00</span>
-                            <span class="bank-list__rate bank-list__rate--sell">41.60</span>
-                        </div>
-                    </li>
-                    <li class="bank-list__item">
-                        <div class="bank-list__info">
-                            <span class="bank-list__name">Monobank</span>
-                        </div>
-                        <div class="bank-list__rates">
-                            <span class="bank-list__rate bank-list__rate--buy">41.15</span>
-                            <span class="bank-list__rate bank-list__rate--sell">41.55</span>
-                        </div>
-                    </li>
-                    <li class="bank-list__item">
-                        <div class="bank-list__info">
-                            <span class="bank-list__name">NBU (Офіційний)</span>
-                        </div>
-                        <div class="bank-list__rates">
-                            <span class="bank-list__rate">41.23</span>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section id="table" class="card card--table">
-                <div class="card__header">
-                    <h2 class="card__title">Світові валюти</h2>
-                </div>
-                <div class="table-container">
-                    <table class="currency-table">
-                        <thead class="currency-table__head">
-                            <tr class="currency-table__row">
-                                <th class="currency-table__th">Валюта</th>
-                                <th class="currency-table__th">Код</th>
-                                <th class="currency-table__th currency-table__th--right">Ціна (UAH)</th>
-                            </tr>
-                        </thead>
-                        <tbody class="currency-table__body">
-                            <tr class="currency-table__row">
-                                <td class="currency-table__td">Євро</td>
-                                <td class="currency-table__td"><span class="badge">EUR</span></td>
-                                <td class="currency-table__td currency-table__td--right">45.20</td>
-                            </tr>
-                            <tr class="currency-table__row">
-                                <td class="currency-table__td">Фунт стерлінгів</td>
-                                <td class="currency-table__td"><span class="badge">GBP</span></td>
-                                <td class="currency-table__td currency-table__td--right">52.80</td>
-                            </tr>
-                            <tr class="currency-table__row">
-                                <td class="currency-table__td">Польський злотий</td>
-                                <td class="currency-table__td"><span class="badge">PLN</span></td>
-                                <td class="currency-table__td currency-table__td--right">10.45</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-                <section id="history" class="card card--history">
-                    <div class="card__header">
-                        <h2 class="card__title">Історія запитів</h2>
-                        <button class="history-clear-btn" aria-label="Очистити історію">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 6h18"></path>
-                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <div class="history-container">
-                        <ul class="history-list">
-                            <li class="history-item">
-                                <div class="history-item__icon-wrapper">
-                                    <svg class="history-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M12 5v14M5 12l7 7 7-7"/>
-                                    </svg>
+                        <div class="converter">
+                            <div class="converter__group">
+                                <label class="converter__label">Віддаю</label>
+                                <div class="converter__input-wrapper">
+                                    <input type="number" id="input-from" class="converter__input" value="100" placeholder="0">
+                                    <select id="select-from" class="converter__select">
+                                        <option value="UAH">UAH</option>
+                                        <option value="USD">USD</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="GBP">GBP</option>
+                                    </select>
                                 </div>
-                                <div class="history-item__info">
-                                    <div class="history-item__operation">100 USD → UAH</div>
-                                    <div class="history-item__date">Сьогодні, 14:30</div>
-                                </div>
-                                <div class="history-item__value">4 150.00 ₴</div>
-                            </li>
+                            </div>
+                            
+                            <div class="converter__divider">
+                                <button class="converter__swap-btn" id="swap-btn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10l5 5 5-5"/><path d="M7 14l5-5 5 5"/></svg>
+                                </button>
+                            </div>
 
-                            <li class="history-item">
-                                <div class="history-item__icon-wrapper">
-                                    <svg class="history-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M12 5v14M5 12l7 7 7-7"/>
-                                    </svg>
+                            <div class="converter__group">
+                                <label class="converter__label">Отримую</label>
+                                <div class="converter__input-wrapper">
+                                    <input type="number" id="input-to" class="converter__input" readonly>
+                                    <select id="select-to" class="converter__select">
+                                        <option value="USD" selected>USD</option>
+                                        <option value="UAH">UAH</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="GBP">GBP</option>
+                                    </select>
                                 </div>
-                                <div class="history-item__info">
-                                    <div class="history-item__operation">50 EUR → USD</div>
-                                    <div class="history-item__date">Вчора, 09:15</div>
-                                </div>
-                                <div class="history-item__value">53.20 $</div>
-                            </li>
-                        </ul>
+                            </div>
+
+                            <button id="convert-btn" class="converter__action-btn">Конвертувати</button>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="col-12">
+                    <div class="d-flex flex-column gap-4">
                         
-                        <div class="history-empty" style="display: none;">
-                            <p>Історія запитів порожня</p>
-                        </div>
+                        <section id="banks" class="card card--banks">
+                            <div class="card__header">
+                                <h2 class="card__title">Курс НБУ</h2>
+                            </div>
+                            <ul class="bank-list" id="nbu-rates-list">
+                                <li class="bank-list__item">Завантаження...</li>
+                            </ul>
+                        </section>
+
+                        <section id="history" class="card card--history">
+                            <div class="card__header">
+                                <h2 class="card__title">Історія запитів</h2>
+                                <button class="history-clear-btn" aria-label="Очистити історію">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+                                </button>
+                            </div>
+                            <div class="history-container">
+                                <ul class="history-list"></ul>
+                                    <div class="pagination-controls d-flex justify-content-between align-items-center mt-3">
+                                        <button id="prev-page" class="nav__btn" disabled>←</button>
+                                        <span id="page-indicator" class="text-muted small">Стор. 1 з 1</span>
+                                        <button id="next-page" class="nav__btn">→</button>
+                                    </div>
+                                <div class="history-empty" style="display: none;"><p>Історія запитів порожня</p></div>
+                            </div>
+                        </section>
+
                     </div>
-                </section>
+                </div>
+
+                    <div class="col-12">
+                        <section id="table" class="card card--table">
+                            <div class="card__header"><h2 class="card__title">Світові валюти</h2></div>
+                            <div class="table-container">
+                                
+                                <div id="loading-spinner" class="text-center py-5">
+                                    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                                        <span class="visually-hidden">Завантаження...</span>
+                                    </div>
+                                    <p class="mt-2 text-muted">Отримання актуальних курсів...</p>
+                                </div>
+
+                                <table class="currency-table" id="currency-table" style="display: none;">
+                                    <thead class="currency-table__head">
+                                        <tr class="currency-table__row">
+                                            <th class="currency-table__th">Валюта</th>
+                                            <th class="currency-table__th">Код</th>
+                                            <th class="currency-table__th currency-table__th--right">Курс НБУ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="currency-table__body" id="currency-table-body">
+                                        </tbody>
+                                </table>
+                                
+                            </div>
+                        </section>
+                    </div>
+
+            </div>
         </div>
     </main>
+
     <div id="auth-modal" class="modal">
         <div class="modal__content">
             <span class="modal__close">&times;</span>
             <h2 class="modal__title">Створити акаунт</h2>
             <p class="modal__subtitle">Зберігайте історію обмінів та налаштування</p>
-            
             <form id="register-form" class="auth-form" novalidate>
                 <div class="form-group">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" id="email" class="form-input" placeholder="name@example.com" required>
                     <span class="error-message" id="email-error"></span>
                 </div>
-
                 <div class="form-group">
                     <label for="password" class="form-label">Пароль</label>
                     <input type="password" id="password" class="form-input" placeholder="Мінімум 6 символів" minlength="6" required>
                     <span class="error-message" id="password-error"></span>
                 </div>
-
                 <div class="form-group">
                     <label for="confirm-password" class="form-label">Підтвердження пароля</label>
                     <input type="password" id="confirm-password" class="form-input" placeholder="Повторіть пароль" required>
                     <span class="error-message" id="confirm-error"></span>
                 </div>
-
                 <button type="submit" class="auth-btn">Зареєструватися</button>
             </form>
         </div>
     </div>
+
+    <button id="scroll-top-btn" class="scroll-top-btn" aria-label="Вгору">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>

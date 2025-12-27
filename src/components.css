@@ -210,4 +210,10 @@ option { background-color: var(--bg-card); color: var(--text-primary); }
 .auth-btn { width: 100%; padding: 14px; background-color: var(--text-primary); color: var(--bg-card); border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 10px; transition: opacity 0.2s; }
 .auth-btn:hover { opacity: 0.9; }
 
+/* --- СТИЛІ ПОМИЛОК (ЗАВДАННЯ 8) --- */
+.converter__input.is-invalid {
+    color: #EB5757 !important; /* Червоний текст */
+    border-bottom: 2px solid #EB5757 !important; /* Червона лінія знизу */
+}
+
 ::placeholder { color: var(--text-secondary) !important; opacity: 0.7; }
