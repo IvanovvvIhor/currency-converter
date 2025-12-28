@@ -217,3 +217,111 @@ option { background-color: var(--bg-card); color: var(--text-primary); }
 }
 
 ::placeholder { color: var(--text-secondary) !important; opacity: 0.7; }
+
+
+/* --- SPLASH SCREEN ANIMATION --- */
+
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999; /* Поверх усього */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Фон сплеш-скріну такий самий, як у body, щоб не було блимання */
+    background-color: var(--bg-body); 
+    transition: opacity 0.5s ease-out, visibility 0.5s;
+}
+
+/* Стан, коли анімація закінчилася (ховаємо блок) */
+#splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* КРАПКА */
+.splash-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: -50px; /* Початкова позиція за межами екрану */
+    
+    /* КОЛІР КРАПКИ: Інверсія від фону */
+    /* У темній темі (--text-primary = білий), крапка буде біла */
+    /* У світлій темі (--text-primary = чорний), крапка буде чорна */
+    background-color: var(--text-primary);
+    
+    /* Анімація: падає -> розширюється */
+    animation: dropAndExpand 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+/* КОНТЕНТ (Лого і текст) */
+.splash-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    opacity: 0; /* Спочатку невидимий */
+    
+    /* Анімація появи тексту */
+    animation: fadeInText 0.5s ease-out 0.8s forwards;
+}
+
+/* Колір тексту всередині крапки має бути контрастним до крапки */
+/* Тобто колір фону body */
+.splash-logo, .splash-text {
+    color: var(--bg-body); 
+}
+
+.splash-logo {
+    width: 80px;
+    height: 80px;
+}
+
+.splash-text {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+/* --- KEYFRAMES --- */
+
+@keyframes dropAndExpand {
+    0% {
+        top: -50px;
+        transform: scale(1);
+    }
+    40% {
+        /* Удар трохи нижче центру (60% висоти) */
+        top: 60%;
+        transform: scale(1);
+    }
+    50% {
+        top: 60%;
+        transform: scale(1.5); /* Ефект пружності перед вибухом */
+    }
+    100% {
+        top: 60%;
+        /* Розширюємо крапку так, щоб вона закрила весь екран */
+        transform: scale(150); 
+    }
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

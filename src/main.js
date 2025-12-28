@@ -11,6 +11,28 @@ import './responsive.css';
 
 import axios from 'axios';
 
+// --- SPLASH SCREEN LOGIC ---
+const splashScreen = document.getElementById('splash-screen');
+
+// 1. Примусово встановлюємо тему ДО показу сторінки, щоб крапка була правильного кольору
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+}
+
+// 2. Прибираємо сплеш-скрін через 2.5 секунди (коли анімація пройде)
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        if (splashScreen) {
+            splashScreen.classList.add('hidden');
+            
+            // Видаляємо з DOM повністю, щоб не заважав
+            setTimeout(() => {
+                splashScreen.remove();
+            }, 500);
+        }
+    }, 2000); // Час має бути трохи більшим за тривалість анімації CSS (1.5s + пауза)
+});
 
 const themeBtn = document.getElementById('theme-toggle');
 const body = document.body;
