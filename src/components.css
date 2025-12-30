@@ -1,4 +1,4 @@
-/* --- BUTTONS --- */
+/* #region ЗАВДАННЯ 6 - BUTTONS & UI CONTROLS */
 .theme-toggle {
     background: none;
     border: none;
@@ -76,8 +76,9 @@
 
 .scroll-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
 .scroll-top-btn:hover { background-color: #333; box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); transform: translateY(-5px); }
+/* #endregion */
 
-/* --- CARDS --- */
+/* #region ЗАВДАННЯ 6 - CARDS & CONTAINERS */
 .card {
     width: 100%;
     max-width: 720px;
@@ -100,8 +101,9 @@
 .card__header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 30px; }
 .card__title { font-size: 1.5rem; font-weight: 600; color: var(--text-primary); }
 .card__date { font-size: 0.875rem; color: var(--text-secondary) !important; }
+/* #endregion */
 
-/* --- CONVERTER INPUTS --- */
+/* #region ЗАВДАННЯ 4 - CONVERTER INTERFACE */
 .converter { display: flex; flex-direction: column; gap: 20px; }
 .converter__group { background-color: rgba(255, 255, 255, 0.03); border-radius: 12px; padding: 16px 20px; }
 .converter__label { display: block; font-size: 0.875rem; color: var(--text-secondary) !important; margin-bottom: 8px; }
@@ -145,8 +147,9 @@ option { background-color: var(--bg-card); color: var(--text-primary); }
     transition: transform 0.3s;
 }
 .converter__swap-btn:hover { transform: rotate(180deg); border-color: var(--text-primary); }
+/* #endregion */
 
-/* --- BANK LIST & HISTORY --- */
+/* #region ЗАВДАННЯ 7 & 9 - LISTS, HISTORY & PAGINATION */
 .bank-list, .history-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
 .bank-list__item { display: flex; justify-content: space-between; align-items: center; padding: 16px; border-bottom: 1px solid var(--border-color); }
 .bank-list__item:last-child { border-bottom: none; }
@@ -168,16 +171,18 @@ option { background-color: var(--bg-card); color: var(--text-primary); }
 .history-item__date { font-size: 0.8rem; color: var(--text-secondary); }
 .history-clear-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 .history-clear-btn:hover { background-color: rgba(255, 255, 255, 0.1); color: #EB5757; }
+/* #endregion */
 
-/* --- TABLE --- */
+/* #region ЗАВДАННЯ 7 - DATA TABLE */
 .currency-table { width: 100%; border-collapse: collapse; }
 .currency-table__th { text-align: left; padding: 12px; color: var(--text-secondary); font-weight: 400; font-size: 0.9rem; border-bottom: 1px solid var(--border-color); }
 .currency-table__th--right, .currency-table__td--right { text-align: right; }
 .currency-table__td { padding: 20px 12px; font-size: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-primary); }
 .currency-table__row:last-child .currency-table__td { border-bottom: none; }
 .badge { background-color: rgba(255, 255, 255, 0.1); padding: 4px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; color: var(--text-primary); }
+/* #endregion */
 
-/* --- MODAL & FORMS --- */
+/* #region ЗАВДАННЯ 5 - MODAL & FORMS */
 .modal {
     display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%;
     background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px);
@@ -209,18 +214,18 @@ option { background-color: var(--bg-card); color: var(--text-primary); }
 .error-message { display: block; margin-top: 6px; font-size: 0.8rem; color: #EB5757; height: 14px; }
 .auth-btn { width: 100%; padding: 14px; background-color: var(--text-primary); color: var(--bg-card); border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 10px; transition: opacity 0.2s; }
 .auth-btn:hover { opacity: 0.9; }
+/* #endregion */
 
-/* --- СТИЛІ ПОМИЛОК (ЗАВДАННЯ 8) --- */
+/* #region ЗАВДАННЯ 8 - ERROR HANDLING */
 .converter__input.is-invalid {
     color: #EB5757 !important; /* Червоний текст */
     border-bottom: 2px solid #EB5757 !important; /* Червона лінія знизу */
 }
 
 ::placeholder { color: var(--text-secondary) !important; opacity: 0.7; }
+/* #endregion */
 
-
-/* --- SPLASH SCREEN ANIMATION --- */
-
+/* #region ЗАВДАННЯ 11 - SPLASH SCREEN ANIMATION */
 #splash-screen {
     position: fixed;
     top: 0;
@@ -325,3 +330,4 @@ option { background-color: var(--bg-card); color: var(--text-primary); }
         transform: translateY(0);
     }
 }
+/* #endregion */

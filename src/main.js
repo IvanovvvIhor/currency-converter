@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-// 👇 ТУТ БУЛА ПОМИЛКА. Тепер шляхи правильні для твоєї структури:
 import './variables.css';
 import './base.css';
 import './layout.css';
@@ -11,29 +10,8 @@ import './responsive.css';
 
 import axios from 'axios';
 
-// --- SPLASH SCREEN LOGIC ---
+//#region ЗАВДАННЯ 11, 12 - DOM ELEMENTS & SPLASH SCREEN
 const splashScreen = document.getElementById('splash-screen');
-
-// 1. Примусово встановлюємо тему ДО показу сторінки, щоб крапка була правильного кольору
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'light') {
-    document.body.classList.add('light-theme');
-}
-
-// 2. Прибираємо сплеш-скрін через 2.5 секунди (коли анімація пройде)
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        if (splashScreen) {
-            splashScreen.classList.add('hidden');
-            
-            // Видаляємо з DOM повністю, щоб не заважав
-            setTimeout(() => {
-                splashScreen.remove();
-            }, 500);
-        }
-    }, 2000); // Час має бути трохи більшим за тривалість анімації CSS (1.5s + пауза)
-});
-
 const themeBtn = document.getElementById('theme-toggle');
 const body = document.body;
 const inputFrom = document.getElementById('input-from');
@@ -46,29 +24,41 @@ const historyList = document.querySelector('.history-list');
 const clearHistoryBtn = document.querySelector('.history-clear-btn');
 const emptyMsg = document.querySelector('.history-empty');
 const alertBox = document.getElementById('api-alert');
-
-// Елементи спінера та таблиці
 const spinner = document.getElementById('loading-spinner');
 const currencyTable = document.getElementById('currency-table');
 const tableBody = document.getElementById('currency-table-body');
 
-// Змінна для курсів
 let RATES = { UAH: 1 };
 
-// --- 0. БЕЗПЕЧНА РОБОТА З LOCALSTORAGE (ЗАВДАННЯ 10) ---
-// Ця функція не дасть сайту впасти, якщо дані пошкоджені
+// Splash Screen Logic
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+}
+
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        if (splashScreen) {
+            splashScreen.classList.add('hidden');
+            setTimeout(() => {
+                splashScreen.remove();
+            }, 500);
+        }
+    }, 2000);
+});
+//#endregion
+
+//#region ЗАВДАННЯ 10 - LOCALSTORAGE (SAFE ACCESS & STATE)
 function getSafeStorage(key, defaultValue) {
     try {
         const stored = localStorage.getItem(key);
         return stored ? JSON.parse(stored) : defaultValue;
     } catch (error) {
-        console.warn(`Помилка читання localStorage [${key}]:`, error);
-        return defaultValue; // Повертаємо дефолт, якщо дані биті
+        console.warn(`LocalStorage Error [${key}]:`, error);
+        return defaultValue;
     }
 }
 
-// --- 1. КЕШУВАННЯ СТАНУ (ЗАВДАННЯ 10) ---
-// Зберігаємо те, що ввів користувач (Сума, Валюти)
 function saveConverterState() {
     const state = {
         amount: inputFrom.value,
@@ -78,7 +68,6 @@ function saveConverterState() {
     localStorage.setItem('converter_state', JSON.stringify(state));
 }
 
-// Відновлюємо стан при запуску
 function loadConverterState() {
     const savedState = getSafeStorage('converter_state', null);
     if (savedState) {
@@ -87,14 +76,14 @@ function loadConverterState() {
         selectTo.value = savedState.to || 'UAH';
     }
 }
+//#endregion
 
-// --- 2. API ЗАПИТ ---
+//#region ЗАВДАННЯ 6, 7 - API REQUESTS (AXIOS)
 async function fetchRates() {
     try {
         spinner.style.display = 'block';
         currencyTable.style.display = 'none';
         
-        // Штучна затримка
         await new Promise(resolve => setTimeout(resolve, 500));
 
         const response = await axios.get('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
@@ -107,7 +96,6 @@ async function fetchRates() {
             if(dateSpan) dateSpan.textContent = `Курс НБУ на ${data[0].exchangedate}`;
         }
 
-        // Оновлення списку банків
         const topCurrencies = ['USD', 'EUR', 'GBP'];
         const bankList = document.getElementById('nbu-rates-list');
         if (bankList) {
@@ -126,7 +114,6 @@ async function fetchRates() {
             });
         }
 
-        // Оновлення таблиці
         if (tableBody) {
             tableBody.innerHTML = '';
             const tableCurrencies = ['USD', 'EUR', 'GBP', 'PLN', 'CAD', 'CHF', 'JPY', 'CNY'];
@@ -145,12 +132,11 @@ async function fetchRates() {
             });
         }
 
-        // Після завантаження курсів - відновлюємо збережені числа користувача
         loadConverterState();
         calculate();
 
     } catch (error) {
-        console.error("Помилка API:", error);
+        console.error("API Error:", error);
         if(alertBox) {
             alertBox.style.display = 'block';
             alertBox.textContent = 'Не вдалося завантажити курси. Працюємо офлайн.';
@@ -162,15 +148,15 @@ async function fetchRates() {
         }
     }
 }
+//#endregion
 
-// --- 3. РОЗРАХУНОК ---
+//#region ЗАВДАННЯ 4, 8 - CALCULATION & ERROR HANDLING
 function calculate() {
     try {
         const amount = parseFloat(inputFrom.value);
         const currFrom = selectFrom.value;
         const currTo = selectTo.value;
 
-        // Зберігаємо стан при кожній зміні
         saveConverterState();
 
         if (isNaN(amount)) {
@@ -196,7 +182,6 @@ function calculate() {
     }
 }
 
-// Слухачі подій для калькулятора
 inputFrom.addEventListener('input', calculate);
 selectFrom.addEventListener('change', calculate);
 selectTo.addEventListener('change', calculate);
@@ -207,8 +192,9 @@ swapBtn.addEventListener('click', () => {
     selectTo.value = tempCurr;
     calculate();
 });
+//#endregion
 
-// --- 4. ІСТОРІЯ (З LocalStorage) ---
+//#region ЗАВДАННЯ 9 - PAGINATION & HISTORY
 const ITEMS_PER_PAGE = 5;
 let currentPage = 1;
 const prevBtn = document.getElementById('prev-page');
@@ -236,9 +222,7 @@ function renderHistoryItem(item) {
 }
 
 function loadHistory() {
-    // Використовуємо безпечну функцію
     const history = getSafeStorage('history', []);
-    
     historyList.innerHTML = '';
 
     if (history.length === 0) {
@@ -302,8 +286,9 @@ clearHistoryBtn.addEventListener('click', () => {
         loadHistory();
     }
 });
+//#endregion
 
-// --- 5. ТЕМА ---
+//#region ЗАВДАННЯ 3 - DOM MANIPULATION (THEME)
 const sunIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>`;
 const moonIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
 
@@ -323,8 +308,9 @@ themeBtn.addEventListener('click', () => {
     themeBtn.innerHTML = isLight ? moonIcon : sunIcon;
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
 });
+//#endregion
 
-// --- 6. МОДАЛКА (POST) ---
+//#region ЗАВДАННЯ 5 - FORMS & POST REQUEST
 const registerForm = document.getElementById('register-form');
 const modal = document.getElementById('auth-modal');
 const openModalBtn = document.getElementById('open-modal-btn');
@@ -345,7 +331,7 @@ if (registerForm) {
         try {
             btn.disabled = true;
             btn.textContent = 'Обробка...';
-            // POST Request
+            
             await axios.post('https://jsonplaceholder.typicode.com/posts', {
                 email: document.getElementById('email').value
             });
@@ -360,11 +346,13 @@ if (registerForm) {
         }
     });
 }
+//#endregion
 
-// --- ЗАПУСК ---
+//#region INITIALIZATION
 initTheme();
 loadHistory();
-fetchRates(); // В кінці викликає loadConverterState()
+fetchRates();
+
 const scrollTopBtn = document.getElementById('scroll-top-btn');
 if(scrollTopBtn) {
     window.addEventListener('scroll', () => {
@@ -373,3 +361,4 @@ if(scrollTopBtn) {
     });
     scrollTopBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 }
+//#endregion

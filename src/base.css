@@ -1,4 +1,4 @@
-/* --- СКИДАННЯ --- */
+/* #region GLOBAL RESET */
 * {
     margin: 0;
     padding: 0;
@@ -15,8 +15,9 @@ body {
     font-family: var(--font-main);
     overflow-x: hidden;
 }
+/* #endregion */
 
-/* --- ВИПРАВЛЕННЯ КОНФЛІКТІВ З BOOTSTRAP --- */
+/* #region BOOTSTRAP OVERRIDES & TYPOGRAPHY */
 body {
     background-color: var(--bg-body) !important;
     color: var(--text-primary) !important;
@@ -45,3 +46,4 @@ h1, h2, h3, h4, h5, h6, .card__title {
 body, .card, .modal__content {
     color: var(--text-primary) !important;
 }
+/* #endregion */
