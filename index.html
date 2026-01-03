@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./src/style.css">
     <title>Converter Now</title>
-    <script type="module" crossorigin src="/currency-converter/assets/index-DDtUhzZE.js"></script>
+    <script type="module" crossorigin src="/currency-converter/assets/index-4bxsDnSk.js"></script>
     <link rel="stylesheet" crossorigin href="/currency-converter/assets/index-Bzd_jkr1.css">
   </head>
   <body>
@@ -170,31 +170,65 @@
         </div>
     </main>
 
-    <div id="auth-modal" class="modal">
-        <div class="modal__content">
-            <span class="modal__close">&times;</span>
-            <h2 class="modal__title">Створити акаунт</h2>
-            <p class="modal__subtitle">Зберігайте історію обмінів та налаштування</p>
-            <form id="register-form" class="auth-form" novalidate>
-                <div class="form-group">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" id="email" class="form-input" placeholder="name@example.com" required>
-                    <span class="error-message" id="email-error"></span>
+        <div id="auth-modal" class="modal">
+            <div class="modal__content">
+                <span class="modal__close">&times;</span>
+                
+                <div id="register-block">
+                    <h2 class="modal__title">Створити акаунт</h2>
+                    <p class="modal__subtitle">Заповніть дані для реєстрації</p>
+                    
+                    <form id="register-form" class="auth-form" novalidate>
+                        <div class="form-group">
+                            <label for="reg-email" class="form-label">Email</label>
+                            <input type="email" id="reg-email" class="form-input" placeholder="name@example.com">
+                            <span class="error-message" id="reg-email-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password" class="form-label">Пароль</label>
+                            <input type="password" id="reg-password" class="form-input" placeholder="Мінімум 6 символів">
+                            <span class="error-message" id="reg-password-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-confirm" class="form-label">Підтвердження</label>
+                            <input type="password" id="reg-confirm" class="form-input" placeholder="Повторіть пароль">
+                            <span class="error-message" id="reg-confirm-error"></span>
+                        </div>
+                        <button type="submit" class="auth-btn">Зареєструватися</button>
+                        
+                        <div class="mt-3 text-center">
+                            <span class="text-muted small">Вже є акаунт? </span>
+                            <a href="#" id="show-login-link" style="color: var(--text-primary); font-weight: 600;">Увійти</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="password" class="form-label">Пароль</label>
-                    <input type="password" id="password" class="form-input" placeholder="Мінімум 6 символів" minlength="6" required>
-                    <span class="error-message" id="password-error"></span>
+
+                <div id="login-block" style="display: none;">
+                    <h2 class="modal__title">Вхід</h2>
+                    <p class="modal__subtitle">Введіть свої дані</p>
+                    
+                    <form id="login-form" class="auth-form" novalidate>
+                        <div class="form-group">
+                            <label for="login-email" class="form-label">Email</label>
+                            <input type="email" id="login-email" class="form-input" placeholder="name@example.com">
+                            <span class="error-message" id="login-email-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password" class="form-label">Пароль</label>
+                            <input type="password" id="login-password" class="form-input" placeholder="Ваш пароль">
+                            <span class="error-message" id="login-password-error"></span>
+                        </div>
+                        <button type="submit" class="auth-btn">Увійти</button>
+
+                        <div class="mt-3 text-center">
+                            <span class="text-muted small">Немає акаунту? </span>
+                            <a href="#" id="show-register-link" style="color: var(--text-primary); font-weight: 600;">Створити</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="confirm-password" class="form-label">Підтвердження пароля</label>
-                    <input type="password" id="confirm-password" class="form-input" placeholder="Повторіть пароль" required>
-                    <span class="error-message" id="confirm-error"></span>
-                </div>
-                <button type="submit" class="auth-btn">Зареєструватися</button>
-            </form>
+
+            </div>
         </div>
-    </div>
 
     <button id="scroll-top-btn" class="scroll-top-btn" aria-label="Вгору">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
